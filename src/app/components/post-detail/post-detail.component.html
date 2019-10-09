@@ -1,0 +1,12 @@
+<div class="col-md-12" *ngIf="!post">
+	Cargando...
+</div>
+<div class="col-md-12" *ngIf="post">
+	<h1 class="mt-2">{{post.title}}</h1>
+	<p class="created_at">{{post.category.name}} | {{ post.created_at | date : "fullDate" }}</p>
+	<p class="post_user">Autor: {{post.user.name+" "+post.user.surname}}</p>
+	<img *ngIf="post.image != null && post.image" src="{{url + 'get_image/' + post.image}}" alt="image" class="post-detail-image">
+	<img *ngIf="post.image == null || !post.image" src="../../../assets/images/default-image.jpg" alt="image" class="post-detail-image">
+	<img *ngIf="post.image == null && !post.image" src="../../../assets/images/default-image.jpg" alt="image" class="post-detail-image">	
+	<p class="mt-2" [innerHtml]="post.content"></p>
+</div>

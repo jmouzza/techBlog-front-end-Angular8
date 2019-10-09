@@ -1,0 +1,12 @@
+<div class="loading" *ngIf ="!posts">
+	<h3>Cargando los últimos POSTS...</h3>
+</div>
+<div class="container-fluid" *ngIf ="posts">
+	<!--Info superior de la página-->
+	<h3 style="margin-top: 15px">{{page_title}}</h3>
+	<p style="margin-bottom: 35px">{{page_info}}</p>
+	<!--Listado de POSTS-->
+	<app-post-list [posts]="posts" 
+				   [url]="url"
+				   [userID]="userID"></app-post-list>
+</div>

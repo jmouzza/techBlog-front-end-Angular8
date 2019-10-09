@@ -1,0 +1,136 @@
+/* You can add global styles to this file, and also import other style files */
+.avatar_edit{
+	width: 200px;
+}
+
+.avatar_default{
+	width: 200px;
+	border-radius: 900px;
+	overflow: hidden;
+}
+
+.avatar_mask{
+	width: 40px;
+	height: 40px;
+	border: 1px solid #343a40;
+	border-radius: 900px;
+	overflow: hidden;
+}
+.avatar_menu{
+	height: 40px;
+}
+
+a.btn.up_btn.afu-attach-pin {
+    cursor: pointer;
+}
+
+a.btn.up_btn.afu-attach-pin:hover{
+    background: #34373E;
+    color: white;
+}
+
+
+/*Estilos dropdown menu categorías*/
+.dropdown-menu.dropdown-menu-category.show{
+	background-color: #d1ced2;
+}
+a.dropdown-item.dropdown-item-category:hover{
+	background-color: #343a40;
+	color: white;
+}
+
+/*Estilos para los posts*/
+
+/*home*/
+
+.post-mask{
+	width: 304px;
+	height: 200px;
+	overflow: hidden;
+}
+
+img.post-image{
+	display: block;
+	height: 200px;
+	margin: 0px auto;
+	}
+
+.post-detail-image{
+	display: block;
+	max-height: 320px;
+}
+.created_at{
+	color:gray;
+	font-size: 14px;
+}
+.post_user{
+	margin-top: -20px;
+	color: gray;
+	font-weight: bold;
+}
+a.home-post {
+	text-decoration: none;
+	color: black;
+}
+
+a.btn.btn-leer{
+	background: #B7B7B7;
+	margin: 10px 10px 0px 0px;
+}
+a.btn.btn-leer:hover{
+	background: #616161;
+}
+a.btn.btn-editar{
+	background: #907DDA;
+	margin: 10px 10px 0px 0px;
+}
+a.btn.btn-editar:hover{
+	background: #5D5289; 
+}
+
+.btn.btn-borrar{
+	background: #C95858;
+	margin: 10px 10px 0px 0px;
+	
+}
+.btn.btn-borrar:hover{
+	background: #EA1F1F;
+}
+
+.edit-post-image{
+	height: 200px;
+	
+}
+.btn.btn-borrar-post{
+	background: #C95858;
+	margin: 0px;
+	
+}
+.btn.btn-borrar-post:hover{
+	background: #EA1F1F;
+}
+
+/*Estilos pagina perfil*/
+.avatar_profile_mask{
+	width: 140px;
+	height: 140px;
+	border-radius: 900px;
+	overflow: hidden;
+}
+#avatar_profile{
+	height: 155px;
+
+}
+#profile-info{
+	width: 50%;
+}
+#profile{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: rgba(0,0,0,.03);
+	min-height: 170px;
+	border-top: 1px solid rgba(0,0,0,.125);
+	border-bottom: 1px solid rgba(0,0,0,.125);
+}

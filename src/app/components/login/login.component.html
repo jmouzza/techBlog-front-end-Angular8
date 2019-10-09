@@ -1,0 +1,24 @@
+<div class="col-md-12 mt-3">
+	<!--Info superior de la página-->
+	<h3>{{page_title}}</h3>
+	<p>{{page_info}}</p>
+	<hr>
+	<div class="alert alert-danger col-md-5 pr-0 mt-3" *ngIf="token == 'false'">
+		{{message}}
+	</div>
+
+	<!--Formulario de LOGGIN-->
+	<form #loginForm="ngForm" class="col-md-5 pl-0 ml-0 pr-0" (ngSubmit)="onSubmit(loginForm)">
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="usuario.email" required email>
+		</div>
+		<div class="form-group">
+			<label for="password">Contraseña</label>
+			<input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="usuario.password" required>
+		</div>
+		<input type="submit" value="Iniciar Sesión" class="btn btn-success" [disabled]="!loginForm.valid">
+	</form>
+	
+
+</div>

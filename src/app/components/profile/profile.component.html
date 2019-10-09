@@ -1,0 +1,32 @@
+<div class="loading" *ngIf ="!posts">
+	<h3>Cargando los últimos POSTS...</h3>
+</div>
+<div class="container-fluid" *ngIf ="posts">
+	<!--Info superior de la página-->
+	
+	<div id="profile">
+		<div class="avatar_profile_mask float-left ml-2 mr-3">
+			<div *ngIf = "profile_data && profile_data.image">
+				<p>
+					<img src="{{url + 'get_avatar/' + profile_data.image}}" alt="Avatar" id="avatar_profile"/>
+				</p>				
+			</div>
+			<div *ngIf = "profile_data.image == null || profile_data.image == ''">
+				<p>
+					<img src="../../../assets/images/avatar.png" alt="Avatar" id="avatar_profile"/>
+				</p>				
+			</div>
+		</div>
+		<div id="profile-info">
+			<h5>{{profile_data.name + " " + profile_data.surname}}</h5>
+			<p [innerHtml]="profile_data.description"></p>
+		</div>		
+		
+	</div>
+
+	<div class="clearfix"></div>
+	<!--Listado de POSTS-->
+	<app-post-list [posts]="posts" 
+				   [url]="url"
+				   [userID]="userID"></app-post-list>
+</div>

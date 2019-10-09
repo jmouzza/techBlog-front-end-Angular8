@@ -1,0 +1,69 @@
+<div class="container mb-5"> <!--INCIO CONTENEDOR PRINCIPAL-->
+  <br/>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="['/home']">
+      <img src="assets/images/angular.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      {{title}}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/home']">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorías            
+          </a>
+          <div class="dropdown-menu dropdown-menu-category" aria-labelledby="navbarDropdown">
+            <a *ngFor = "let category of categories" class="dropdown-item dropdown-item-category" [routerLink]="['post-category',category.id]">{{category.name}}</a>
+          </div>
+        </li>
+      </ul>
+      <!--Menú login/register-->
+      <ul class="navbar-nav navbar-right" *ngIf="identity == null">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']">Inicia sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']">Regístrate</a>
+        </li>
+      </ul>
+      <!--Dropdown/Acciones usuario loggeado-->
+      <ul class="navbar-nav navbar-right" *ngIf="identity != null">
+        <li class="nav-item">
+          <div class="avatar_mask">
+            <img *ngIf = "identity && identity.image" src="{{url + 'get_avatar/' + identity.image}}" alt="Avatar" class="avatar_menu"/>
+            <img *ngIf = "identity.image == null" src="assets/images/avatar.png" alt="Avatar" class="avatar_menu"/>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name+' '+identity.surname}}
+            
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink] = "['/post-new']">Crear Entrada</a>
+            <a class="dropdown-item" [routerLink] = "['/category-new']">Crear Categoría</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/profile',identity.sub]">Mi Perfil</a>
+            <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
+            <a class="dropdown-item" [routerLink]="['/logout']">Salir</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>  
+
+<!--CONTENIDO A MOSTRAR-->
+
+<!--Angular utiliza una etiqueta especial <router-outlet> que esta constantemente revisando 
+  la url de la aplicación y cargando según la configuración (en app.routing.ts) el componente requerido por la ruta -->
+  <router-outlet></router-outlet>
+
+
+</div><!--FIN CONTENEDOR PRINCIPAL-->
+

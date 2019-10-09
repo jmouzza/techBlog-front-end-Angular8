@@ -1,0 +1,49 @@
+<div class="col-md-12 mt-3">
+	<!--Info superior de la página-->
+	<h3>{{page_title}}</h3>
+	<p *ngIf= "status != 'success'">{{page_info}}</p>
+	<hr>
+	<!--Mensaje a mostrar segun la respuesta del API-->
+	<div class="alert alert-success col-md-8" *ngIf="status == 'success'">
+		{{message}}
+	</div>
+	<div class="alert alert-danger col-md-8" *ngIf="status == 'error'">
+		{{message}}
+	</div>
+	<!--Formulario de registro de usuario-->
+	<form class="col-md-8 pl-0 pr-0" #newPostForm="ngForm" (ngSubmit)="metodoSubmit(newPostForm)">
+		<div class="form-group">
+			<label for="title">Titulo</label>
+			<input type="text" name="title" class="form-control" #title="ngModel" [(ngModel)]="post.title" required pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+">
+			
+			<small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+				El título no es válido
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="category_id">Categoría</label>
+			<select name="category_id" #category_id="ngModel" [(ngModel)]="post.category_id" class="form-control">
+				<option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="content">Contenido</label>
+			<textarea type="text" name="content" [froalaEditor]="options" class="form-control"  #content="ngModel" [(ngModel)]="post.content"></textarea>
+
+			<small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
+				El contenido no es válido
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="image">Imagen</label>
+			<angular-file-uploader 
+				[config]="afuConfig" 
+				[resetUpload]=resetVar 
+				(ApiResponse)="imageUpload($event)">
+			</angular-file-uploader>
+		</div>
+		
+		<input type="submit" value="Publicar Post" class="btn btn-success" [disabled]="newPostForm.invalid">
+	</form>
+</div>
+	

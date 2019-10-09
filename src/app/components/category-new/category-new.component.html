@@ -1,0 +1,25 @@
+<div class="col-md-12 mt-3">
+	<!--Info superior de la página-->
+	<h3>{{page_title}}</h3>
+	<p>{{page_info}}</p>
+	<hr/>
+	<!--Mensaje a mostrar segun la respuesta del API-->
+	<div class="alert alert-success col-md-5" *ngIf="status == 'success'">
+		{{message}}
+	</div>
+	<div class="alert alert-danger col-md-5" *ngIf="status == 'error'">
+		{{message}}
+	</div>
+	<!--Formulario de categoría nueva-->
+	<form class="col-md-5 pl-0 pr-0" #newCategoryForm="ngForm" (ngSubmit)="onSubmit(newCategoryForm)">
+		<div class="form-group">
+			<label for="name">Categoría</label>
+			<input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="category.name" pattern="[a-zA-Z0-9.,ñÑáéíóúÁÉÍÓÚ\s]+" required>
+			
+			<small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+				El nombre de la categoría no es válido
+			</small>
+		</div>
+		<input type="submit" value="Crear categoría" class="btn btn-success" [disabled]="newCategoryForm.invalid">
+	</form>
+</div>

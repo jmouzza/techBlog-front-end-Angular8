@@ -1,0 +1,49 @@
+<div class="card-columns">
+	<article class="card" *ngFor="let post of posts">
+		<div class="card-header">
+			<a [routerLink]="['/post-detail', post.id]" class="home-post">
+				<h3 class="title-post">{{post.title}}</h3>		
+			</a>
+			<!--fecha de publicación del post-->
+			<p class="created_at"><a [routerLink]="['/post-category',post.category_id]">{{post.category.name}}</a> | {{ post.created_at | date : "fullDate" }}</p>
+			<p class="post_user">Autor: <a [routerLink]="['/profile', post.user_id]">{{post.user.name+" "+post.user.surname}}</a></p>			
+		</div>
+		<div class="card-body w-100">
+			<!--imagen del post-->
+			<div class="post-mask">
+				<img *ngIf="post.image != null && post.image" src="{{url + 'get_image/' + post.image}}" alt="image" class="post-image">
+				<img *ngIf="post.image == null || !post.image || post.image == ''" src="../../../assets/images/default-image.jpg" alt="image" class="post-image">
+			</div>
+			<!--botones de acción del post-->
+			<div class="post-buttons">
+				<a [routerLink]="['/post-detail', post.id]" class="btn btn-leer">Leer Post</a>
+				<a [routerLink]="['/post-edit', post.id]" class="btn btn-editar" *ngIf="post.user_id == userID && userID != null">Editar</a>
+				
+				<!-- Trigger the modal with a button -->
+				<button type="button" class="btn btn-borrar" data-toggle="modal" [attr.data-target]="'#myModal'+post.id" *ngIf="post.user_id == userID && userID != null">Borrar</button>
+
+				<!-- Modal -->
+				<div id="{{'myModal'+post.id}}" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				      	<h4 class="modal-title">Advertencia!!!</h4>
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>					        
+				      </div>
+				      <div class="modal-body">
+				        <p>¿Seguro deseas borrar el POST: {{post.title}}?</p>
+				      </div>
+				      <div class="modal-footer">
+				      	<a (click)="deletePost(post.id)" class="btn btn-borrar-post"  data-dismiss="modal">Sí, borrar</a>
+				        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+				      </div>
+				    </div>
+
+				  </div>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>
